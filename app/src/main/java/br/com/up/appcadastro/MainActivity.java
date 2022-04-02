@@ -31,13 +31,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(
-                        MainActivity.this,
-                        RegisterActivity.class);
-
-                //startActivity(intent);
-
-                startActivityForResult(intent,100);
+                callRegisterActivity(null);
             }
         });
 
@@ -49,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(User user) {
 
+                                callRegisterActivity(user);
+
                             }
                         });
         recyclerView.setAdapter(userListAdapter);
@@ -57,6 +53,19 @@ public class MainActivity extends AppCompatActivity {
                 new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+    }
+
+    public void callRegisterActivity(User user){
+
+        Intent intent = new Intent(
+                MainActivity.this,
+                RegisterActivity.class);
+
+        if(user != null){
+            intent.putExtra("user",user);
+        }
+
+        startActivityForResult(intent,100);
     }
 
     @Override

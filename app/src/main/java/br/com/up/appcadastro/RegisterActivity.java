@@ -18,6 +18,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+
         TextInputEditText editTextFirstName =
                 findViewById(R.id.edit_text_first_name);
 
@@ -26,6 +27,16 @@ public class RegisterActivity extends AppCompatActivity {
 
         TextInputEditText editTextPhone =
                 findViewById(R.id.edit_text_phone);
+
+        if(getIntent().hasExtra("user")){
+            User user = (User) getIntent()
+                    .getSerializableExtra("user");
+
+            editTextFirstName.setText(user.getFirstName());
+            editTextSurName.setText(user.getSurName());
+            editTextPhone.setText(user.getPhone());
+        }
+
 
         Button saveButton = findViewById(R.id.button_register);
 
